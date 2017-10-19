@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment
         extends Fragment
 {
-
     protected View             parentView;
     protected FragmentActivity activity;
     protected LayoutInflater   inflater;
