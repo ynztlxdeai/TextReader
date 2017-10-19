@@ -8,8 +8,11 @@ import android.graphics.Path;
 import android.graphics.Region;
 import android.graphics.drawable.GradientDrawable;
 
+import com.luoxiang.txtreader.bean.support.BookMixAToc;
 import com.luoxiang.txtreader.manager.SettingManager;
 import com.luoxiang.txtreader.manager.ThemeManager;
+
+import java.util.List;
 
 /**
  * packageName:	    com.luoxiang.txtreader.view.readview

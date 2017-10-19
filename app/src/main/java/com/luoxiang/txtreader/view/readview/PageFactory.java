@@ -13,8 +13,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.luoxiang.txtreader.R;
+import com.luoxiang.txtreader.bean.support.BookMixAToc;
 import com.luoxiang.txtreader.manager.SettingManager;
 import com.luoxiang.txtreader.utils.AppUtils;
+import com.luoxiang.txtreader.utils.FileUtils;
+import com.luoxiang.txtreader.utils.LogUtils;
 import com.luoxiang.txtreader.utils.ScreenUtils;
 
 import java.io.File;

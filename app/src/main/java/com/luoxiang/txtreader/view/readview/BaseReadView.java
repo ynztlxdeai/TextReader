@@ -8,10 +8,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
 
+import com.luoxiang.txtreader.bean.support.BookMixAToc;
 import com.luoxiang.txtreader.manager.SettingManager;
 import com.luoxiang.txtreader.manager.ThemeManager;
+import com.luoxiang.txtreader.utils.LogUtils;
 import com.luoxiang.txtreader.utils.ScreenUtils;
 import com.luoxiang.txtreader.utils.ToastUtils;
+
+import java.util.List;
 
 /**
  * packageName:	    com.luoxiang.txtreader.view.readview

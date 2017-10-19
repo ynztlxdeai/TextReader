@@ -2,6 +2,11 @@
 package com.luoxiang.txtreader.view.readview;
 
 import android.content.Context;
+
+import com.luoxiang.txtreader.bean.support.BookMixAToc;
+
+import java.util.List;
+
 /**
  * packageName:	    com.luoxiang.txtreader.view.readview
  * className:	    NoAimWidget
