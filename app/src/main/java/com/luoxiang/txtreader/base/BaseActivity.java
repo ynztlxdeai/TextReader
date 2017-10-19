@@ -20,6 +20,18 @@ import com.luoxiang.txtreader.view.loading.CustomDialog;
 
 import butterknife.ButterKnife;
 
+/**
+ * packageName:	    com.luoxiang.txtreader.base
+ * className:	    BaseActivity
+ * author:	        Luoxiang
+ * time:	        2017/10/19	19:28
+ * desc:	        TODO
+ *
+ * svnVersion:
+ * upDateAuthor:    Vincent
+ * upDate:          2017/10/19
+ * upDateDesc:      TODO
+ */
 public abstract class BaseActivity
         extends AppCompatActivity
 {
