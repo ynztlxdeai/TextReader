@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Scroller;
 
 import com.luoxiang.txtreader.manager.SettingManager;
+import com.luoxiang.txtreader.manager.ThemeManager;
 import com.luoxiang.txtreader.utils.ScreenUtils;
+import com.luoxiang.txtreader.utils.ToastUtils;
 
 /**
  * packageName:	    com.luoxiang.txtreader.view.readview
