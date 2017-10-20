@@ -33,7 +33,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.luoxiang.reader.R;
-import com.luoxiang.reader.ReaderApplication;
 import com.luoxiang.reader.base.BaseActivity;
 import com.luoxiang.reader.base.Constant;
 import com.luoxiang.reader.bean.BookMixAToc;
@@ -70,9 +69,6 @@ import com.luoxiang.reader.view.readview.NoAimWidget;
 import com.luoxiang.reader.view.readview.OnReadStateChangeListener;
 import com.luoxiang.reader.view.readview.OverlappedWidget;
 import com.luoxiang.reader.view.readview.PageWidget;
-import com.sinovoice.hcicloudsdk.android.tts.player.TTSPlayer;
-import com.sinovoice.hcicloudsdk.common.tts.TtsConfig;
-import com.sinovoice.hcicloudsdk.player.TTSCommonPlayer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -176,11 +172,6 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
      **/
     private boolean startRead = false;
 
-    /**
-     * 朗读 播放器
-     */
-    private TTSPlayer mTtsPlayer;
-    private TtsConfig ttsConfig;
 
     private BaseReadView mPageWidget;
     private int curTheme = -1;
@@ -261,9 +252,6 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
         showDialog();
 
         mTvBookReadTocTitle.setText(recommendBooks.title);
-
-        mTtsPlayer = TTSPlayerUtils.getTTSPlayer();
-        ttsConfig = TTSPlayerUtils.getTtsConfig();
 
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
         intentFilter.addAction(Intent.ACTION_TIME_TICK);
@@ -854,9 +842,6 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
     protected void onDestroy() {
         super.onDestroy();
 
-        if (mTtsPlayer.getPlayerState() == TTSCommonPlayer.PLAYER_STATE_PLAYING)
-            mTtsPlayer.stop();
-
         EventManager.refreshCollectionIcon();
         EventManager.refreshCollectionList();
         EventBus.getDefault().unregister(this);
@@ -876,9 +861,6 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-
-        // 观察内存泄漏情况
-        ReaderApplication.getRefWatcher(this).watch(this);
     }
 
     private class ReadListener implements OnReadStateChangeListener {
