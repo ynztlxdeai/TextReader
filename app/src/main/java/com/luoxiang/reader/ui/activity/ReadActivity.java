@@ -64,7 +64,6 @@ import com.luoxiang.reader.utils.FormatUtils;
 import com.luoxiang.reader.utils.LogUtils;
 import com.luoxiang.reader.utils.ScreenUtils;
 import com.luoxiang.reader.utils.SharedPreferencesUtil;
-import com.luoxiang.reader.utils.TTSPlayerUtils;
 import com.luoxiang.reader.utils.ToastUtils;
 import com.luoxiang.reader.view.readview.BaseReadView;
 import com.luoxiang.reader.view.readview.NoAimWidget;

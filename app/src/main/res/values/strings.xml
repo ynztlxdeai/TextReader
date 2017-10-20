@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="app_name">任阅</string>
+    <string name="app_name">阅</string>
 
     <string name="add_tag">Add Tag</string>
 

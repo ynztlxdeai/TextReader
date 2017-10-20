@@ -1,4 +1,3 @@
-
 package com.luoxiang.reader;
 
 import android.app.Application;
@@ -12,38 +11,23 @@ import com.luoxiang.reader.component.DaggerAppComponent;
 import com.luoxiang.reader.module.AppModule;
 import com.luoxiang.reader.module.BookApiModule;
 import com.luoxiang.reader.utils.AppUtils;
-import com.luoxiang.reader.utils.FileUtils;
 import com.luoxiang.reader.utils.LogUtils;
 import com.luoxiang.reader.utils.SharedPreferencesUtil;
-import com.sinovoice.hcicloudsdk.api.HciCloudSys;
-import com.sinovoice.hcicloudsdk.common.HciErrorCode;
-import com.sinovoice.hcicloudsdk.common.InitParam;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 public class ReaderApplication extends Application {
 
     private static ReaderApplication sInstance;
     private AppComponent appComponent;
 
-    private RefWatcher refWatcher;
-
-    public static RefWatcher getRefWatcher(Context context) {
-        ReaderApplication application = (ReaderApplication) context.getApplicationContext();
-        return application.refWatcher;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
-        refWatcher = LeakCanary.install(this);
         sInstance = this;
         initCompoent();
         AppUtils.init(this);
         CrashHandler.getInstance().init(this);
         initPrefs();
         initNightMode();
-        //initHciCloud();
     }
 
     public static ReaderApplication getsInstance() {
@@ -76,27 +60,5 @@ public class ReaderApplication extends Application {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-    }
-
-    protected void initHciCloud() {
-        InitParam initparam = new InitParam();
-        String authDirPath = getFilesDir().getAbsolutePath();
-        initparam.addParam(InitParam.AuthParam.PARAM_KEY_AUTH_PATH, authDirPath);
-        initparam.addParam(InitParam.AuthParam.PARAM_KEY_AUTO_CLOUD_AUTH, "no");
-        initparam.addParam(InitParam.AuthParam.PARAM_KEY_CLOUD_URL, "test.api.hcicloud.com:8888");
-        initparam.addParam(InitParam.AuthParam.PARAM_KEY_DEVELOPER_KEY, "0a5e69f8fb1c019b2d87a17acf200889");
-        initparam.addParam(InitParam.AuthParam.PARAM_KEY_APP_KEY, "0d5d5466");
-        String logDirPath = FileUtils.createRootPath(this) + "/hcicloud";
-        FileUtils.createDir(logDirPath);
-        initparam.addParam(InitParam.LogParam.PARAM_KEY_LOG_FILE_PATH, logDirPath);
-        initparam.addParam(InitParam.LogParam.PARAM_KEY_LOG_FILE_COUNT, "5");
-        initparam.addParam(InitParam.LogParam.PARAM_KEY_LOG_FILE_SIZE, "1024");
-        initparam.addParam(InitParam.LogParam.PARAM_KEY_LOG_LEVEL, "5");
-        int errCode = HciCloudSys.hciInit(initparam.getStringConfig(), this);
-        if (errCode != HciErrorCode.HCI_ERR_NONE) {
-            LogUtils.e("HciCloud初始化失败" + errCode);
-            return;
-        }
-        LogUtils.e("HciCloud初始化成功");
     }
 }
