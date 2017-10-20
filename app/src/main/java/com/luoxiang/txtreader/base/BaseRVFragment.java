@@ -34,7 +34,6 @@ public abstract class BaseRVFragment<T1 extends BaseContract.BasePresenter, T2> 
                                                                                                      OnLoadMoreListener,
                                                                                                      OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
 
-    @Inject
     protected T1 mPresenter;
 
     @Bind(R.id.recyclerview)
