@@ -1,2 +1,0 @@
-# TextReader
-for text read
