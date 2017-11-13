@@ -858,11 +858,17 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
             ScreenUtils.stopAutoBrightness(ReadActivity.this);
         }*/
 
-        ScreenUtils.startAutoBrightness(ReadActivity.this);
 
         if (mPresenter != null) {
             mPresenter.detachView();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ScreenUtils.startAutoBrightness(ReadActivity.this);
+
     }
 
     private class ReadListener implements OnReadStateChangeListener {
