@@ -234,6 +234,7 @@ public class PageFactory {
 
             // 保存阅读进度
             SettingManager.getInstance().saveReadProgress(bookId, currentChapter, curBeginPos, curEndPos);
+//            SettingManager.getInstance().saveReadProgress(bookId, currentChapter, 11560100, 11560500);git
         }
     }
 
