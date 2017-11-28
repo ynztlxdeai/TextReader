@@ -4,6 +4,7 @@ package com.luoxiang.reader.ui.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,7 +19,6 @@ import com.luoxiang.reader.bean.support.SelectionEvent;
 import com.luoxiang.reader.component.AppComponent;
 import com.luoxiang.reader.ui.fragment.BookDetailDiscussionFragment;
 import com.luoxiang.reader.ui.fragment.BookDetailReviewFragment;
-import com.luoxiang.reader.view.RVPIndicator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -49,7 +49,7 @@ public class BookDetailCommunityActivity extends BaseActivity {
     private int index;
 
     @Bind(R.id.indicatorSubRank)
-    RVPIndicator mIndicator;
+    TabLayout mIndicator;
     @Bind(R.id.viewpagerSubRank)
     ViewPager mViewPager;
 
@@ -97,15 +97,21 @@ public class BookDetailCommunityActivity extends BaseActivity {
             public Fragment getItem(int position) {
                 return mTabContents.get(position);
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mDatas.get(position);
+            }
         };
     }
 
     @Override
     public void configViews() {
-        mIndicator.setTabItemTitles(mDatas);
+//        mIndicator.setTabItemTitles(mDatas);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(2);
-        mIndicator.setViewPager(mViewPager, index);
+//        mIndicator.setViewPager(mViewPager, index);
+        mIndicator.setupWithViewPager(mViewPager);
     }
 
     @Override

@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+<!--
             <com.luoxiang.reader.view.RVPIndicator
                 android:id="@+id/indicatorSubject"
                 android:layout_width="match_parent"
@@ -43,7 +43,13 @@
                 rvp:indicator_style="triangle"
                 rvp:item_count="3"
                 rvp:text_color_hightlight="@color/white"
-                rvp:text_color_normal="@color/light_gray" />
+                rvp:text_color_normal="@color/light_gray" />-->
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/indicatorSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpagerSubject"

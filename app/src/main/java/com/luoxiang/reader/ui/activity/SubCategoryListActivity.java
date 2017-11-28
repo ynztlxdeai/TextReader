@@ -3,6 +3,7 @@ package com.luoxiang.reader.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -25,7 +26,6 @@ import com.luoxiang.reader.ui.adapter.MinorAdapter;
 import com.luoxiang.reader.ui.contract.SubCategoryActivityContract;
 import com.luoxiang.reader.ui.fragment.SubCategoryFragment;
 import com.luoxiang.reader.ui.presenter.SubCategoryActivityPresenter;
-import com.luoxiang.reader.view.RVPIndicator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +45,7 @@ public class SubCategoryListActivity extends BaseActivity implements SubCategory
     private String currentMinor = "";
 
     @Bind(R.id.indicatorSub)
-    RVPIndicator mIndicator;
+    TabLayout mIndicator;
     @Bind(R.id.viewpagerSub)
     ViewPager mViewPager;
 
@@ -117,15 +117,21 @@ public class SubCategoryListActivity extends BaseActivity implements SubCategory
             public Fragment getItem(int position) {
                 return mTabContents.get(position);
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mDatas.get(position);
+            }
         };
     }
 
     @Override
     public void configViews() {
-        mIndicator.setTabItemTitles(mDatas);
+      //  mIndicator.setTabItemTitles(mDatas);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(4);
-        mIndicator.setViewPager(mViewPager, 0);
+      //  mIndicator.setViewPager(mViewPager, 0);
+        mIndicator.setupWithViewPager(mViewPager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

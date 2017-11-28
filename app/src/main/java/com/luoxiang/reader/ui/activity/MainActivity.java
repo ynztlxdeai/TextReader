@@ -2,6 +2,7 @@
 package com.luoxiang.reader.ui.activity;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,7 +27,6 @@ import com.luoxiang.reader.ui.fragment.RecommendFragment;
 import com.luoxiang.reader.ui.presenter.MainActivityPresenter;
 import com.luoxiang.reader.utils.SharedPreferencesUtil;
 import com.luoxiang.reader.utils.ToastUtils;
-import com.luoxiang.reader.view.RVPIndicator;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ import butterknife.Bind;
 public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Bind(R.id.indicator)
-    RVPIndicator mIndicator;
+    TabLayout mIndicator;
     @Bind(R.id.viewpager)
     ViewPager mViewPager;
 
@@ -99,16 +99,21 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             public Fragment getItem(int position) {
                 return mTabContents.get(position);
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mDatas.get(position);
+            }
         };
     }
 
     @Override
     public void configViews() {
-        mIndicator.setTabItemTitles(mDatas);
+       // mIndicator.setTabItemTitles(mDatas);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(3);
-        mIndicator.setViewPager(mViewPager, 0);
-
+      //  mIndicator.setViewPager(mViewPager, 0);
+        mIndicator.setupWithViewPager(mViewPager);
         mPresenter.attachView(this);
 
         mIndicator.postDelayed(new Runnable() {

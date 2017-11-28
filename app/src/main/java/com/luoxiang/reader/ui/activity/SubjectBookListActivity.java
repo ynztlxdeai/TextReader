@@ -3,6 +3,7 @@ package com.luoxiang.reader.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,7 +27,6 @@ import com.luoxiang.reader.ui.contract.SubjectBookListContract;
 import com.luoxiang.reader.ui.fragment.SubjectFragment;
 import com.luoxiang.reader.ui.presenter.SubjectBookListPresenter;
 import com.luoxiang.reader.utils.ToastUtils;
-import com.luoxiang.reader.view.RVPIndicator;
 import com.luoxiang.reader.view.ReboundScrollView;
 import com.luoxiang.reader.view.SupportDividerItemDecoration;
 
@@ -43,9 +43,9 @@ import butterknife.Bind;
 public class SubjectBookListActivity extends BaseActivity implements SubjectBookListContract.View, OnRvItemClickListener<String> {
 
     @Bind(R.id.indicatorSubject)
-    RVPIndicator mIndicator;
+    TabLayout         mIndicator;
     @Bind(R.id.viewpagerSubject)
-    ViewPager mViewPager;
+    ViewPager         mViewPager;
     @Bind(R.id.rsvTags)
     ReboundScrollView rsvTags;
 
@@ -106,15 +106,20 @@ public class SubjectBookListActivity extends BaseActivity implements SubjectBook
             public Fragment getItem(int position) {
                 return mTabContents.get(position);
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mDatas.get(position);
+            }
         };
     }
 
     @Override
     public void configViews() {
-        mIndicator.setTabItemTitles(mDatas);
+//        mIndicator.setTabItemTitles(mDatas);
         mViewPager.setAdapter(mAdapter);
-        mIndicator.setViewPager(mViewPager, 0);
-
+//        mIndicator.setViewPager(mViewPager, 0);
+        mIndicator.setupWithViewPager(mViewPager);
         rvTags.setHasFixedSize(true);
         rvTags.setLayoutManager(new LinearLayoutManager(this));
         rvTags.addItemDecoration(new SupportDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
